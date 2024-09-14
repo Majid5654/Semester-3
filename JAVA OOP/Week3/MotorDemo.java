@@ -3,7 +3,20 @@ public class MotorDemo {
         Motor motor = new Motor();
 
         motor.statusPrint();
-        motor.speed=50;
+        motor.increaseEngine();
+
+        motor.startEngine();
         motor.statusPrint();
+
+        for (int i = 0; i < 21; i++) {
+            motor.increaseEngine();
+            motor.statusPrint();
+        }
+        
+        
+
+        motor.turnOffEngine();
+        motor.statusPrint();
+
     }
 }
