@@ -57,6 +57,8 @@ $a %= $b;
 echo "After modulus $a %= $b : a = $a<br>";
 echo "<br>";
 echo "<br>";
+$a=10;
+$b=5;
 $hasilIdentik = $a === $b;
 echo "Are $a and $b identical? " . ($hasilIdentik ? 'Yes' : 'No') . "<br>";
 $hasilTidakIdentik = $a !== $b;
