@@ -53,16 +53,23 @@ public Employee getAssistant() {
 
 
 public void setAssistant(Employee assistant) {
-    this.assistant = assistant;
+        this.assistant = assistant;
 }
 
         public String info() {
-        String info = "";
-        info += "Name: " + this.name + "\n";
-        info += "Railway Class: " + this.railwayClass + "\n";
-        info += "Machinist: " + this.machinist.info() + "\n";
-        info += "Assistant: " + this.assistant.info() + "\n";
-        return info;
+            String info = "";
+            info += "Name: " + this.name + "\n";
+            info += "Railway Class: " + this.railwayClass + "\n";
+            info += "Machinist: " + (this.machinist != null ? this.machinist.info() : "Machinist not assigned") + "\n";
+            
+            if (this.assistant != null) {
+                info += "Assistant: " + this.assistant.info() + "\n";
+            } else {
+                info += "Assistant: Assistant not assigned\n";
+            }
+            
+            return info;
         }
+        
 
 }
