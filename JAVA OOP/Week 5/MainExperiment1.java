@@ -2,7 +2,7 @@ public class MainExperiment1 {
     public static void main(String[] args) {
         
         Processor p = new Processor("Intel i5", 3);
-        Computer L = new Computer("Thinkpad", p);
+        Computer L = new Computer("Thinkpad", new Processor("Intel i5", 3));
         
         L.info();
 
