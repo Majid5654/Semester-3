@@ -107,4 +107,5 @@ public class Customer {
         info += "Total Stay Duration: " + stayDuration + " days\n";
         return info;
     }
+    
 }
