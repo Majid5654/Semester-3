@@ -15,6 +15,7 @@ if (!isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ABC Hotel</title>
     <style>
+        /* Your existing CSS */
         body, html {
             margin: 0;
             padding: 0;
@@ -99,34 +100,34 @@ if (!isset($_SESSION['username'])) {
         }
 
         .prev, .next {
-        cursor: pointer;
-        position: absolute;
-        top: 50%;
-        width: auto;
-        padding: 10px; 
-        color: white;
-        font-weight: bold;
-        font-size: 20px; 
-        transition: 0.6s ease;
-        user-select: none;
-        background-color: rgba(0, 0, 0, 0.5);
-        border-radius: 50%; 
-}
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 10px; 
+            color: white;
+            font-weight: bold;
+            font-size: 20px; 
+            transition: 0.6s ease;
+            user-select: none;
+            background-color: rgba(0, 0, 0, 0.5);
+            border-radius: 50%; 
+        }
 
-.next {
-    right: 20px; 
-    transform: translateY(-50%);
-}
+        .next {
+            right: 20px; 
+            transform: translateY(-50%);
+        }
 
-.prev {
-    left: 20px;
-    transform: translateY(-50%);
-}
+        .prev {
+            left: 20px;
+            transform: translateY(-50%);
+        }
 
-.prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-       
+        .prev:hover, .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        
         .text-content {
             position: absolute;
             top: 50%;
@@ -135,7 +136,6 @@ if (!isset($_SESSION['username'])) {
             text-align: center;
         }
 
-        
         .section-2 {
             background-image: url('image2.jpg');
         }
@@ -144,6 +144,41 @@ if (!isset($_SESSION['username'])) {
             background-image: url('image3.jpeg');
         }
     </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentSlide = 0;
+            const slides = $('.slideshow-container img');
+            const totalSlides = slides.length;
+
+            function changeSlide(n) {
+                slides.eq(currentSlide).removeClass('active');
+                currentSlide = (currentSlide + n + totalSlides) % totalSlides; 
+                slides.eq(currentSlide).addClass('active');
+            }
+
+            $('.next').click(function() {
+                changeSlide(1);
+            });
+
+            $('.prev').click(function() {
+                changeSlide(-1);
+            });
+
+            setInterval(() => {
+                changeSlide(1);
+            }, 5000); 
+
+            $(window).scroll(function() {
+                var scrollPosition = $(this).scrollTop();
+                $('.dynamic-text').each(function() {
+                    var scaleFactor = 1 + scrollPosition / 1000; 
+                    $(this).css('font-size', 3 * scaleFactor + 'rem'); 
+                });
+            });
+        });
+    </script>
 </head>
 <body>
     <div class="navbar">
@@ -160,8 +195,8 @@ if (!isset($_SESSION['username'])) {
             <img src="image4.jpg" alt="Slide 2">
             <img src="image5.jpg" alt="Slide 3">
             
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
+            <a class="prev">&#10094;</a>
+            <a class="next">&#10095;</a>
         </div>
         <div class="text-content">
             <h1><?php echo "Welcome, " . htmlspecialchars($_SESSION['username']) . " to SABANGSA HOTEL"; ?></h1>
@@ -180,31 +215,5 @@ if (!isset($_SESSION['username'])) {
         <h1 class="dynamic-text">Experience Luxury</h1>
         <p>Your comfort is our top priority. Let us take care of you.</p>
     </div>
-
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slideshow-container img');
-
-        function changeSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (currentSlide + n + slides.length) % slides.length; 
-            slides[currentSlide].classList.add('active');
-        }
-
-        setInterval(() => {
-            changeSlide(1);
-        }, 5000); 
-
-        window.onscroll = function() {
-            var scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
-            var textElements = document.querySelectorAll('.dynamic-text'); 
-
-            textElements.forEach(function(text) {
-                var scaleFactor = 1 + scrollPosition / 1000; 
-                text.style.fontSize = 3 * scaleFactor + "rem"; 
-            });
-        };
-    </script>
 </body>
 </html>
