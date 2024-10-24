@@ -10,6 +10,7 @@ else{
     echo "Variabel 'nama' tidak ditemukan dalam array ."; 
 }
 
+
 echo "<h1>No 2 </h1>";
 if (isset($umur)&& $umur >= 18){
     echo "Anda sudah dewasa";
